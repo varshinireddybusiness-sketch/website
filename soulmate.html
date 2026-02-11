@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>A Birthday Note 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1:#0b0f1a;
+  --bg2:#141b3a;
+  --paper1:#faf6f1;
+  --paper2:#f2e9df;
+  --ink:#3b2f2f;
+  --brick:#8B3A3A;
+  --rose:#C97C7C;
+  --accent:#ff5fa2;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Nunito',sans-serif;
+  background:
+    radial-gradient(circle at top right, rgba(255,95,162,.18), transparent 45%),
+    radial-gradient(circle at bottom left, rgba(201,198,255,.18), transparent 45%),
+    linear-gradient(180deg,var(--bg2),var(--bg1));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:1.5rem;
+  overflow:hidden;
+}
+
+/* ================= BOOK WRAPPER ================= */
+.book-wrap{
+  perspective:2000px;
+  width:100%;
+  display:flex;
+  justify-content:center;
+}
+
+/* ================= BOOK ================= */
+.book{
+  width:900px;
+  max-width:95vw;
+  height:520px;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform 1.4s ease;
+  cursor:pointer;
+}
+
+/* Desktop open */
+.book.open{
+  transform:rotateY(-180deg);
+}
+
+/* ================= PAGES ================= */
+.page{
+  position:absolute;
+  inset:0;
+  border-radius:26px;
+  backface-visibility:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.55);
+}
+
+/* ================= COVER ================= */
+.cover{
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+    radial-gradient(circle at top left, rgba(255,95,162,.25), transparent 60%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.cover h2{
+  font-family:'Allura',cursive;
+  font-size:3.2rem;
+  color:white;
+  font-weight:400;
+}
+
+.cover span{
+  display:block;
+  margin-top:.8rem;
+  font-size:.9rem;
+  opacity:.7;
+}
+
+/* ================= INSIDE ================= */
+.inside{
+  background:linear-gradient(180deg,var(--paper1),var(--paper2));
+  color:var(--ink);
+  transform:rotateY(180deg);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2.3rem;
+  padding:2.6rem 3rem;
+  overflow:hidden;
+}
+
+.inside::before{
+  content:"❣️";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  color:var(--rose);
+  opacity:.6;
+}
+
+/* Text */
+.left p,
+.right p{
+  font-size:1.05rem;
+  line-height:1.55;
+  margin-bottom:1rem;
+}
+
+.left strong{
+  color:var(--brick);
+}
+
+.signature{
+  margin-top:2rem;
+  font-family:'Allura',cursive;
+  font-size:1.6rem;
+  color:var(--brick);
+}
+
+/* Button */
+.btn{
+  margin-top:1rem;
+  padding:1rem 2.2rem;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--accent),#ff85c0);
+  color:white;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+
+  /* FIXED SHADOW */
+  box-shadow:
+    0 14px 35px rgba(255,95,162,.45),
+    0 4px 12px rgba(0,0,0,.15);
+
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 18px 45px rgba(255,95,162,.55),
+    0 6px 16px rgba(0,0,0,.18);
+}
+
+/* Mobile tap feedback */
+@media (hover: none) {
+  .btn:active{
+    transform:scale(.98);
+  }
+}
+
+
+/* =====================================================
+   MOBILE & TABLET (CENTERED + SAME BOOK ANIMATION)
+   ===================================================== */
+@media (max-width: 900px){
+
+  body{
+    padding:1rem;
+    overflow:hidden;
+  }
+
+  .book{
+    width:100%;
+    height:80vh;
+    max-height:640px;
+  }
+
+  /* Use vertical open on mobile for stability */
+  .book.open{
+    transform:rotateX(-180deg);
+  }
+
+  .inside{
+    transform:rotateX(180deg);
+    grid-template-columns:1fr;
+    padding:2rem 1.6rem;
+    overflow-y:auto;
+  }
+
+  .inside::before{
+    display:none;
+  }
+
+  .left p,
+  .right p{
+    font-size:1rem;
+  }
+
+  .btn{
+    width:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="book-wrap">
+  <div class="book" id="book">
+
+    <!-- COVER -->
+    <div class="page cover">
+      <div>
+        <h2>A Birthday Note 🤍</h2>
+        <span>tap to open</span>
+      </div>
+    </div>
+
+    <!-- INSIDE -->
+    <div class="page inside">
+      <div class="left">
+        <p><strong>Happy Birthday, Nanna 🤍</strong></p>
+
+        <p>
+          Everybody deservers to have someone like you who is so kind & gentle. Life feels different to me now, almost like before our Maharashtra trip and after Maharashtra.
+That trip quietly changed the way I look at you.
+        </p>
+
+        <p>
+          I know you’re not ready to move forward, and that’s completely okay.
+Take all the time you need. I don’t want to rush anything.
+I would never want to be someone who comes in the way of that.
+        </p>
+        <p>
+          I wish you nothing but growth, confidence, and skies that keep opening up for you.
+        </p>
+      </div>
+
+      <div class="right">
+
+        <p>
+           Wherever life takes you, I hope it brings you peace in every decision you make.
+        </p>
+
+        <p>
+          And one day, when you’re up there chasing your dreams,
+          know that somewhere down here, there will be someone smiling —
+          simply happy for you.
+        </p>
+
+        <br>
+          I don’t know what this connection is, but it feels real.
+I can wait, for as long as you need.
+
+(And yes… I love your mukku 🤍)
+        </p>
+
+        <div class="signature">
+          with love,<br>
+          Kandula Varshini Reddy
+        </div>
+
+        <button class="btn" onclick="location.href='birthday.html'">
+          🎉 Ready for a virtual celebration? 🥳💫
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const book = document.getElementById('book');
+book.addEventListener('click', () => {
+  book.classList.add('open');
+});
+</script>
+
+</body>
+</html>

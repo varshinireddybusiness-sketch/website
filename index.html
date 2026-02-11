@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy 24th Birthday, Captain ✈️</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1:#0b0f1a;
+  --bg2:#141b3a;
+  --accent:#ff5fa2;
+  --soft:#c9c6ff;
+  --text:#f2f2f6;
+  --muted:#b6bdd8;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Nunito',sans-serif;
+  min-height:100vh;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top right, rgba(255,95,162,.18), transparent 45%),
+    radial-gradient(circle at bottom left, rgba(201,198,255,.18), transparent 45%),
+    linear-gradient(180deg,var(--bg2),var(--bg1));
+  overflow:hidden;
+}
+
+/* Clouds */
+.cloud{
+  position:absolute;
+  background:rgba(255,255,255,.06);
+  filter:blur(50px);
+  border-radius:50%;
+  animation:drift 60s linear infinite;
+}
+
+.cloud.one{width:420px;height:160px;top:18%;left:-10%}
+.cloud.two{width:520px;height:200px;top:60%;left:-15%;animation-duration:90s}
+
+@keyframes drift{
+  to{transform:translateX(140vw)}
+}
+
+section{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2rem 1rem;
+  position:relative;
+}
+
+.card{
+  max-width:900px;
+  width:100%;
+  text-align:center;
+  padding:3.4rem 2.6rem;
+  border-radius:30px;
+  background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  box-shadow:0 30px 80px rgba(0,0,0,.55);
+  backdrop-filter:blur(10px);
+  animation:fadeUp 1.2s ease;
+}
+
+/* Plane + path */
+.flight-path{
+  position:absolute;
+  top:22%;
+  left:-20%;
+  font-size:1.8rem;
+  color:var(--soft);
+  opacity:.8;
+  animation:fly 18s linear infinite;
+}
+
+@keyframes fly{
+  to{transform:translateX(140vw)}
+}
+
+/* Heading */
+h2{
+  font-family:'Allura',cursive;
+  font-weight:400;
+  font-size:clamp(3rem,6vw,4.2rem);
+  margin-bottom:1rem;
+}
+
+/* Subtitle */
+.subtitle{
+  font-size:1.08rem;
+  font-weight:400;
+  color:var(--muted);
+  max-width:540px;
+  margin:0 auto;
+  line-height:1.8;
+}
+
+/* Button */
+.btn{
+  margin-top:2.8rem;
+  padding:1rem 2.6rem;
+  border-radius:999px;
+  border:none;
+  font-size:1rem;
+  font-family:'Nunito',sans-serif;
+  font-weight:600;
+  cursor:pointer;
+  color:white;
+  background:linear-gradient(135deg,var(--accent),#ff85c0);
+  box-shadow:0 12px 35px rgba(255,95,162,.45);
+  transition:.35s ease;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 16px 45px rgba(255,95,162,.6);
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+
+
+</style>
+</head>
+
+<body>
+
+<div class="cloud one"></div>
+<div class="cloud two"></div>
+
+<section>
+  <div class="flight-path">✈️ · · · · · · · · ·</div>
+
+  <div class="card">
+    <h2>Happy 24th Birthday, Captain🧑‍✈️❤️</h2>
+
+    <p class="subtitle">
+      To someone who makes every destination brighter —<br>
+      Celebrating you today and always..
+    </p>
+
+    <button class="btn" onclick="location.href='soulmate.html'">
+      F1226 ✈️
+    </button>
+  </div>
+</section>
+
+</body>
+</html>

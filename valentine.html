@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Flying+Kite&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #5c1b1b, #2b0b0b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .card {
+      width: 900px; /* 🔥 FIXED: matches index.html feel */
+      background: #fff5f5;
+      border-radius: 36px;
+      padding: 48px 36px 44px;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Flying Kite', cursive;
+      font-size: 42px;
+      color: #8b1e1e;
+      margin-bottom: 18px; /* tightened */
+    }
+
+    p {
+      font-size: 18px;
+      color: #4a1c1c;
+      margin-bottom: 28px; /* tightened */
+    }
+
+    .buttons {
+      position: relative;
+      margin-bottom: 22px; /* 🔥 FIXED: no height lock */
+      gap: 10px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 34px;
+      border-radius: 999px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      background: #b22222;
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(178,34,34,0.4);
+    }
+
+    #noBtn {
+      background: #f2bcbc;
+      color: #6b1c1c;
+      position: absolute;
+      left: 50%;
+      top: 54px;
+      transform: translateX(-50%);
+      opacity: 1;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Result section */
+    .result {
+      margin-top: 16px; /* 🔥 FIXED */
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .result img {
+      width: 180px;
+      margin-bottom: 12px;
+    }
+
+    .funky-btn {
+      margin-top: 18px;
+      background: #8b0000;
+      color: #fff;
+      border-radius: 999px;
+      box-shadow: 0 12px 30px rgba(139,0,0,0.45);
+      font-size: 15px;
+      padding: 14px 34px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Falling hearts */
+.heart {
+  position: fixed;
+  top: -40px;
+  font-size: 22px;
+  animation: fallHeart linear forwards;
+  pointer-events: none;
+  z-index: 999;
+}
+
+@keyframes fallHeart {
+  to {
+    transform: translateY(110vh);
+    opacity: 0.9;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Guna..Will you be my Valentine? 💘</h1>
+    <p>I promise good vibes, and a very cute date 💌</p>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💖</button>
+      <button id="noBtn">No 🙃</button>
+    </div>
+
+    <div id="result" class="result hidden">
+      <img src="assets/teddy.gif" alt="Cute Teddy">
+      <h2 style="font-family:'Flying Kite', cursive; color:#8b1e1e;">
+        Yayyy! I knew you’d say yes 💕🧸
+      </h2>
+      <button id="dateBtn" class="funky-btn">
+  Click here to see the date I planned ✨🥰
+</button>
+
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const result = document.getElementById("result");
+
+    let noClicks = 0;
+
+    noBtn.addEventListener("click", () => {
+      noClicks++;
+
+      const randomX = Math.random() * 200 - 100;
+      const randomY = Math.random() * 60 - 30;
+
+      noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+      noBtn.style.opacity = Math.max(0, 1 - noClicks * 0.2);
+
+      if (noClicks >= 4) {
+        noBtn.textContent = "Wrong choice 😌";
+      }
+
+      if (noClicks >= 5) {
+        noBtn.classList.add("hidden");
+        yesBtn.textContent = "Ahh! See… you gotta say YES 😏 No choice";
+      }
+    });
+
+    yesBtn.addEventListener("click", () => {
+  yesBtn.classList.add("hidden");
+  noBtn.classList.add("hidden");
+  result.classList.remove("hidden");
+
+  startHearts();
+});
+
+    const dateBtn = document.getElementById("dateBtn");
+
+dateBtn.addEventListener("click", () => {
+  window.location.href = "invite.html";
+});
+function startHearts() {
+  for (let i = 0; i < 25; i++) {
+    setTimeout(createHeart, i * 150);
+  }
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = Math.random() > 0.5 ? "❤️" : "💗";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 8000);
+}
+
+  </script>
+
+</body>
+</html>
